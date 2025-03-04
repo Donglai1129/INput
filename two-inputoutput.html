@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock?</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            color: white;
+        }
+
+        h1 {
+            font-size: 100px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: Impact, sans-serif;
+            margin-bottom: 40px;
+        }
+
+        .rock-container {
+            position: relative;
+            width: 800px;
+            max-width: 90vw;
+            margin-bottom: 50px;
+        }
+
+        .rock-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .input-box {
+            position: absolute;
+            top: 60%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            outline: none;
+            color: black;
+        }
+
+        #charInput2 {
+            left: 70%;
+        }
+
+        #submitButton {
+            margin-top: 40px;
+            background-color: white;
+            color: black;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #submitButton:hover {
+            background-color: gray;
+        }
+
+        #displayedImage {
+            display: none;
+            margin-top: 30px;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Rock?</h1>
+
+    <div class="rock-container">
+        <img src="Types-of-rocks-schist-0721.jpg" class="rock-image" alt="Rock Image">
+        <input type="text" id="charInput1" class="input-box" maxlength="1" placeholder="A-Z or 1-9">
+        <input type="text" id="charInput2" class="input-box" maxlength="1" placeholder="A-Z or 1-9">
+    </div>
+
+    <button onclick="displayImage()" id="submitButton">Show Rock</button>
+    <img id="displayedImage" src="" alt="Rock">
+
+    <script>
+        const images = {
+            "A": "ACDC-Logo-red.webp",
+            "B": "black-sabbath-purple-logo-music-connor-mansell.jpg",
+            "C": "Coldplay-Band-Logo.jpg",
+            "D": "images.jpg",
+            "E": "d3d470dfa1db8a6449ac0d8d7e072265_9f6c86b4554a65041908fed8ef18aeec.webp",
+            "F": "Foo_Fighters_Emblem.webp",
+            "G": "Guns-N-Roses-Logo.png",
+            "H": "51kvsbNW-TL._AC_SL1000_.jpg",
+            "I": "Iron-Maiden-Emblem.png",
+            "J": "Freedom_Artwork.avif"
+        };
+
+        function displayImage() {
+            let input1 = document.getElementById("charInput1").value.toUpperCase();
+            let input2 = document.getElementById("charInput2").value.toUpperCase();
+            const imgElement = document.getElementById("displayedImage");
+            
+
+            if (!isNaN(input1) && input1 !== "") {
+                input1 = String.fromCharCode(parseInt(input1) + 64);
+            }
+            if (!isNaN(input2) && input2 !== "") {
+                input2 = String.fromCharCode(parseInt(input2) + 64);
+            }
+            
+            let selectedImage = images[input1] || images[input2];
+            
+            if (selectedImage) {
+                imgElement.src = selectedImage;
+            } else {
+                imgElement.src = "s-l1200.jpg";
+            }
+            imgElement.style.display = "block";
+        }
+    </script>
+</body>
+</html>
